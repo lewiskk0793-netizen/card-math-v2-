@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>算爆 - 單人版</title>
+  <title>Math Royale</title>
   <style>
     * {
       box-sizing: border-box;
@@ -235,7 +235,7 @@
       align-items: center;
     }
 
-    /* === 關鍵：彈窗尺寸僅包住內容 === */
+    /* 彈窗尺寸僅包住內容 */
     #successModal .modal-content,
     #failureModal .modal-content {
       display: inline-block;
@@ -330,7 +330,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>六張算術 - 單人版</h1>
+    <h1>Math Royale</h1>
     
     <div class="score-time">
       <div>🏆 分數: <span id="score">0</span></div>
@@ -448,7 +448,7 @@
     let lastUsedPattern = -1;
     let generatedPuzzles = new Set();
     let volumeEnabled = true;
-    let audioContext = null; // 共享 AudioContext
+    let audioContext = null;
 
     // ===== 工具函數 =====
     function getRandomSuit() {
@@ -487,7 +487,7 @@
       }
     }
 
-    // ===== 初始化 AudioContext（需使用者互動）=====
+    // ===== 初始化 AudioContext =====
     function initAudioContext() {
       if (!audioContext && window.AudioContext) {
         audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -511,7 +511,7 @@
 
     // ===== 語音/音效系統 =====
     function speakText(text) {
-      initAudioContext(); // 確保 AudioContext 已初始化
+      initAudioContext();
 
       if (!volumeEnabled) {
         setTimeout(() => {
@@ -533,11 +533,10 @@
         return true;
       }
 
-      // 使用 beep 音效替代
       try {
-        playTone(880, 0.3); // Ready?
+        playTone(880, 0.3);
         setTimeout(() => {
-          playTone(440, 0.4); // Go!
+          playTone(440, 0.4);
           setTimeout(() => {
             loadNewGame();
             startTimer();
@@ -653,7 +652,6 @@
     function selectCard(card) {
       if (!isGameActive) return;
       
-      // 如果已選擇運算符，則執行計算
       if (selectedOperator !== null) {
         if (card === selectedCard1) {
           showMessage('不能與自己運算！', 'error');
@@ -663,19 +661,15 @@
         return;
       }
 
-      // 尚未選擇運算符
       if (selectedCard1 === null) {
-        // 首次選擇
         selectedCard1 = card;
         card.classList.add('selected-first');
         document.getElementById('operatorMenu').style.display = 'flex';
         showMessage('已選擇第一張卡，請選擇運算符', 'info');
       } else if (card === selectedCard1) {
-        // 點擊同一張卡 → 取消選擇
         clearSelection();
         showMessage('已取消選擇', 'info');
       } else {
-        // 點擊另一張卡 → 切換為新的第一張卡
         selectedCard1.classList.remove('selected-first');
         selectedCard1 = card;
         card.classList.add('selected-first');
