@@ -13,7 +13,7 @@
       font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
       background: #f0f5ff;
       margin: 0;
-      padding: 16px 0; /* 減少上下 padding */
+      padding: 16px 0;
       color: #333;
       min-height: 100vh;
       display: block;
@@ -23,7 +23,7 @@
       width: 95%;
       max-width: 800px;
       background: white;
-      padding: 16px; /* 減少內距 */
+      padding: 16px;
       border-radius: 16px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       margin: 0 auto;
@@ -33,7 +33,7 @@
       text-align: center;
       color: #2c3e50;
       margin-top: 0;
-      font-size: 24px; /* 手機稍小 */
+      font-size: 24px;
     }
 
     .score-time {
@@ -76,31 +76,29 @@
       background: #ffeaa7;
     }
 
-    /* === 關鍵修正：手牌區響應式 === */
     .hand-area {
       min-height: 110px;
       height: 110px;
       max-height: 110px;
       margin: 16px 0;
-      padding: 0 8px; /* ← 減少左右 padding，防止溢出 */
+      padding: 0 8px;
       background: #fafafa;
       border-radius: 12px;
       display: flex;
       flex-wrap: nowrap;
-      gap: 10px; /* ← 縮小間距 */
+      gap: 10px;
       justify-content: center;
       align-items: center;
-      overflow-x: hidden; /* 防止水平滾動條 */
+      overflow-x: hidden;
       overflow-y: hidden;
     }
 
-    /* === 卡牌：響應式寬度 === */
     .card {
-      width: calc(16vw - 12px); /* 在手機上約 50~60px */
-      min-width: 50px;          /* 最小 50px */
-      max-width: 60px;          /* 最大 60px */
+      width: calc(16vw - 12px);
+      min-width: 50px;
+      max-width: 60px;
       flex-shrink: 0;
-      height: 80px;             /* 稍微縮小高度 */
+      height: 80px;
       border: 3px solid #333;
       border-radius: 10px;
       display: flex;
@@ -120,7 +118,6 @@
       box-shadow: 0 0 16px rgba(9, 132, 227, 0.6);
     }
 
-    /* === 運算選單：直接放在卡牌下方 === */
     .operator-menu {
       display: none;
       justify-content: center;
@@ -187,7 +184,6 @@
     .error { background: #ffdddd; color: #d63031; }
     .info { background: #e3f2fd; color: #0984e3; }
 
-    /* Start! 覆蓋層 */
     .start-overlay {
       position: fixed;
       top: 0;
@@ -222,7 +218,7 @@
       transition: all 0.3s ease;
     }
 
-    /* Modal 樣式保持不變（略）*/
+    /* Modal 通用 */
     .modal,
     #successModal,
     #failureModal {
@@ -235,99 +231,85 @@
       height: 100%;
       background-color: rgba(0,0,0,0.6);
       overflow: auto;
+      justify-content: center;
+      align-items: center;
     }
-    .modal-content {
-      background-color: #fff;
-      margin: 10% auto;
-      padding: 20px;
-      border-radius: 12px;
-      max-width: 500px;
-      margin-left: 16px;
-      margin-right: 16px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-      max-height: 80vh;
-      overflow-y: auto;
-    }
-    .close {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    
+
+    /* === 關鍵：彈窗尺寸僅包住內容 === */
     #successModal .modal-content,
     #failureModal .modal-content {
+      display: inline-block;
       background: white;
-      padding: 30px;
-      border-radius: 16px;
-      max-width: 400px;
-      width: 90%;
+      padding: 16px;
+      border-radius: 12px;
       text-align: center;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-      position: relative;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.3);
+      min-width: 280px;
+      max-width: 90vw;
+      font-size: 15px;
     }
 
     #successModal .modal-content {
       background: #d5f4e6;
-      border: 3px solid #00a86b;
+      border: 2px solid #00a86b;
     }
 
     #successTimeMessage {
       color: #00a86b;
       margin-top: 0;
-      margin-bottom: 10px;
-      font-size: 20px;
+      margin-bottom: 8px;
+      font-size: 18px;
     }
 
     #successMessage {
-      font-size: 16px;
-      margin: 15px 0;
+      font-size: 14px;
+      margin: 10px 0;
       color: #006400;
     }
 
     #failureModal .modal-content {
       background: #ffebee;
-      border: 3px solid #d63031;
+      border: 2px solid #d63031;
     }
 
     #failureModal h2 {
       color: #d63031;
       margin-top: 0;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
+      font-size: 20px;
     }
 
     #failureMessage {
-      font-size: 18px;
-      margin: 20px 0;
+      font-size: 16px;
+      margin: 16px 0;
       color: #8B0000;
     }
 
     .action-buttons {
       display: flex;
-      gap: 12px;
-      margin-top: 25px;
+      gap: 10px;
+      margin-top: 20px;
       width: 100%;
     }
 
     .action-btn {
       flex: 1;
-      padding: 14px 8px;
+      padding: 10px 6px;
       border: none;
-      border-radius: 10px;
-      font-size: 16px;
+      border-radius: 8px;
+      font-size: 14px;
       font-weight: bold;
       cursor: pointer;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 70px;
+      min-height: 60px;
     }
 
     .btn-icon {
-      font-size: 24px;
-      margin-bottom: 6px;
+      font-size: 20px;
+      margin-bottom: 4px;
       display: block;
     }
 
@@ -361,7 +343,6 @@
     </div>
     <div class="hand-area" id="handArea"></div>
     
-    <!-- 運算選單直接放這裡（不再需要 placeholder）-->
     <div class="operator-menu" id="operatorMenu">
       <button class="op-btn" onclick="selectOperator('+')">+</button>
       <button class="op-btn" onclick="selectOperator('−')">−</button>
@@ -380,14 +361,12 @@
     <div id="message" class="message info">🎯 點擊 "Start!" 開始遊戲</div>
   </div>
 
-  <!-- Start! 覆蓋層 -->
   <div class="start-overlay blur" id="startOverlay">
     <div class="start-overlay-content">
       <button class="start-game-btn" onclick="startGame()">Start!</button>
     </div>
   </div>
 
-  <!-- Modals (玩法說明、成功、失敗) -->
   <div id="instructionsModal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeInstructions()">&times;</span>
@@ -452,10 +431,9 @@
   </div>
 
   <script>
-    // === 遊戲狀態（保持不變）===
+    // ===== 全域狀態 =====
     const VALUE_TO_RANK = {1:'A',2:'2',3:'3',4:'4',5:'5',6:'6',7:'7',8:'8',9:'9',10:'10',11:'J',12:'Q',13:'K'};
     const SUITS = ['♠','♥','♦','♣'];
-
     let currentTarget = null;
     let originalHand = [];
     let selectedCard1 = null;
@@ -470,12 +448,9 @@
     let lastUsedPattern = -1;
     let generatedPuzzles = new Set();
     let volumeEnabled = true;
+    let audioContext = null; // 共享 AudioContext
 
-    // SOLUTION_PATTERNS、工具函數、音效等保持不變（為節省空間，此處省略，但完整保留）
-    // ... [所有原有 JS 邏輯完全保留，僅 UI/CSS 調整] ...
-
-    // ========== 以下為完整 JS（僅移除註解以節省長度，邏輯不變）==========
-    
+    // ===== 工具函數 =====
     function getRandomSuit() {
       return SUITS[Math.floor(Math.random() * SUITS.length)];
     }
@@ -499,6 +474,7 @@
       return card;
     }
 
+    // ===== 音量控制 =====
     function toggleVolume() {
       volumeEnabled = !volumeEnabled;
       const volumeBtn = document.getElementById('volumeBtn');
@@ -511,7 +487,32 @@
       }
     }
 
+    // ===== 初始化 AudioContext（需使用者互動）=====
+    function initAudioContext() {
+      if (!audioContext && window.AudioContext) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      }
+    }
+
+    // ===== 播放單音 =====
+    function playTone(frequency, duration = 0.2, startTime = 0) {
+      if (!volumeEnabled || !audioContext) return;
+      const oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+      oscillator.type = 'sine';
+      oscillator.frequency.value = frequency;
+      gainNode.gain.value = 0.3;
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      const actualStartTime = audioContext.currentTime + startTime;
+      oscillator.start(actualStartTime);
+      oscillator.stop(actualStartTime + duration);
+    }
+
+    // ===== 語音/音效系統 =====
     function speakText(text) {
+      initAudioContext(); // 確保 AudioContext 已初始化
+
       if (!volumeEnabled) {
         setTimeout(() => {
           loadNewGame();
@@ -519,44 +520,24 @@
         }, 400);
         return false;
       }
-      
+
       if ('speechSynthesis' in window) {
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.lang = 'en-US';
         utterance.rate = 1.2;
-        utterance.pitch = 1.0;
         speechSynthesis.speak(utterance);
-        
         setTimeout(() => {
           loadNewGame();
           startTimer();
         }, 1000);
         return true;
       }
-      
+
+      // 使用 beep 音效替代
       try {
-        const ctx = new (window.AudioContext || window.webkitAudioContext)();
-        const oscillator1 = ctx.createOscillator();
-        const gain1 = ctx.createGain();
-        oscillator1.type = 'sine';
-        oscillator1.frequency.value = 880;
-        gain1.gain.value = 0.3;
-        oscillator1.connect(gain1);
-        gain1.connect(ctx.destination);
-        oscillator1.start();
-        oscillator1.stop(ctx.currentTime + 0.3);
-        
+        playTone(880, 0.3); // Ready?
         setTimeout(() => {
-          const oscillator2 = ctx.createOscillator();
-          const gain2 = ctx.createGain();
-          oscillator2.type = 'square';
-          oscillator2.frequency.value = 440;
-          gain2.gain.value = 0.4;
-          oscillator2.connect(gain2);
-          gain2.connect(ctx.destination);
-          oscillator2.start();
-          oscillator2.stop(ctx.currentTime + 0.4);
-          
+          playTone(440, 0.4); // Go!
           setTimeout(() => {
             loadNewGame();
             startTimer();
@@ -564,7 +545,7 @@
         }, 400);
         return true;
       } catch (e) {
-        console.log("Audio not supported");
+        console.log("Audio fallback failed");
         setTimeout(() => {
           loadNewGame();
           startTimer();
@@ -573,48 +554,50 @@
       }
     }
 
+    // ===== 計算音效 =====
     function playCalculationSound(operation) {
+      initAudioContext();
       if (!volumeEnabled) return;
-      
-      try {
-        const ctx = new (window.AudioContext || window.webkitAudioContext)();
-        switch(operation) {
-          case '+':
-            createTone(ctx, 523, 0.2, 0);
-            createTone(ctx, 587, 0.2, 0.2);
-            break;
-          case '−':
-            createTone(ctx, 587, 0.2, 0);
-            createTone(ctx, 523, 0.2, 0.2);
-            break;
-          case '×':
-            createTone(ctx, 523, 0.2, 0);
-            createTone(ctx, 659, 0.2, 0);
-            createTone(ctx, 784, 0.2, 0.1);
-            break;
-          case '÷':
-            createTone(ctx, 784, 0.15, 0);
-            createTone(ctx, 1046, 0.15, 0.15);
-            break;
-        }
-      } catch (e) {
-        console.log("Calculation sound not supported");
+      switch(operation) {
+        case '+': 
+          playTone(523, 0.2, 0);
+          playTone(587, 0.2, 0.2);
+          break;
+        case '−':
+          playTone(587, 0.2, 0);
+          playTone(523, 0.2, 0.2);
+          break;
+        case '×':
+          playTone(523, 0.2, 0);
+          playTone(659, 0.2, 0);
+          playTone(784, 0.2, 0.1);
+          break;
+        case '÷':
+          playTone(784, 0.15, 0);
+          playTone(1046, 0.15, 0.15);
+          break;
       }
     }
 
-    function createTone(ctx, frequency, duration, startTime) {
-      const oscillator = ctx.createOscillator();
-      const gainNode = ctx.createGain();
-      oscillator.type = 'sine';
-      oscillator.frequency.value = frequency;
-      gainNode.gain.value = 0.3;
-      oscillator.connect(gainNode);
-      gainNode.connect(ctx.destination);
-      const actualStartTime = ctx.currentTime + startTime;
-      oscillator.start(actualStartTime);
-      oscillator.stop(actualStartTime + duration);
+    // ===== 成功/失敗音效 =====
+    function playSuccessSound() {
+      initAudioContext();
+      if (!volumeEnabled) return;
+      playTone(523, 0.15, 0);
+      playTone(659, 0.15, 0.15);
+      playTone(784, 0.15, 0.3);
+      playTone(1046, 0.2, 0.45);
     }
 
+    function playFailureSound() {
+      initAudioContext();
+      if (!volumeEnabled) return;
+      playTone(523, 0.2, 0);
+      playTone(440, 0.2, 0.2);
+      playTone(392, 0.25, 0.4);
+    }
+
+    // ===== 計時系統 =====
     function startTimer() {
       if (timer) clearInterval(timer);
       timeLeft = 60;
@@ -656,6 +639,7 @@
       }
     }
 
+    // ===== 計分系統 =====
     function addScore(base, timeBonus = 0, isCombo = false) {
       let total = base + timeBonus;
       if (isCombo && combo > 1) {
@@ -665,9 +649,11 @@
       document.getElementById('score').textContent = score;
     }
 
+    // ===== 核心邏輯：卡牌選擇（已修正）=====
     function selectCard(card) {
       if (!isGameActive) return;
       
+      // 如果已選擇運算符，則執行計算
       if (selectedOperator !== null) {
         if (card === selectedCard1) {
           showMessage('不能與自己運算！', 'error');
@@ -677,21 +663,24 @@
         return;
       }
 
+      // 尚未選擇運算符
       if (selectedCard1 === null) {
+        // 首次選擇
         selectedCard1 = card;
         card.classList.add('selected-first');
         document.getElementById('operatorMenu').style.display = 'flex';
         showMessage('已選擇第一張卡，請選擇運算符', 'info');
-        return;
-      }
-
-      if (card === selectedCard1) {
+      } else if (card === selectedCard1) {
+        // 點擊同一張卡 → 取消選擇
         clearSelection();
         showMessage('已取消選擇', 'info');
-        return;
+      } else {
+        // 點擊另一張卡 → 切換為新的第一張卡
+        selectedCard1.classList.remove('selected-first');
+        selectedCard1 = card;
+        card.classList.add('selected-first');
+        showMessage('已切換為新的第一張卡，請選擇運算符', 'info');
       }
-
-      showMessage('請先選擇運算符！', 'error');
     }
 
     function selectOperator(op) {
@@ -890,6 +879,7 @@
       msg.className = 'message ' + type;
     }
 
+    // ===== 成功/失敗處理 =====
     const SUCCESS_MESSAGES = [
       "你真是數學天才！",
       "太神了！完全正確！",
@@ -911,33 +901,6 @@
       "每個錯誤都是進步的機會！",
       "相信自己，你可以的！"
     ];
-
-    function playSuccessSound() {
-      if (!volumeEnabled) return;
-      
-      try {
-        const ctx = new (window.AudioContext || window.webkitAudioContext)();
-        createTone(ctx, 523, 0.15, 0);
-        createTone(ctx, 659, 0.15, 0.15);
-        createTone(ctx, 784, 0.15, 0.3);
-        createTone(ctx, 1046, 0.2, 0.45);
-      } catch (e) {
-        console.log("Success sound not supported");
-      }
-    }
-
-    function playFailureSound() {
-      if (!volumeEnabled) return;
-      
-      try {
-        const ctx = new (window.AudioContext || window.webkitAudioContext)();
-        createTone(ctx, 523, 0.2, 0);
-        createTone(ctx, 440, 0.2, 0.2);
-        createTone(ctx, 392, 0.25, 0.4);
-      } catch (e) {
-        console.log("Failure sound not supported");
-      }
-    }
 
     function showSuccessScreen() {
       playSuccessSound();
@@ -965,6 +928,7 @@
       }
     }
 
+    // ===== 遊戲控制 =====
     function continueChallenge() {
       if (timer) {
         clearInterval(timer);
@@ -1046,6 +1010,7 @@
       }
     }
 
+    // ===== 題目生成 =====
     function isValidPuzzle(puzzle) {
       if (!puzzle.ops.every(x => x >= 1 && x <= 13)) return false;
       if (puzzle.target < 3 || puzzle.target > 13) return false;
@@ -1061,6 +1026,31 @@
       const sortedOps = [...puzzle.ops].sort((a, b) => a - b);
       return sortedOps.join(',') + '|' + puzzle.target;
     }
+
+    const SOLUTION_PATTERNS = [
+      {
+        name: 'all_add_small',
+        generate: () => {
+          const a = Math.floor(Math.random() * 4) + 2;
+          const b = Math.floor(Math.random() * 3) + 1;
+          const c = Math.floor(Math.random() * 3) + 1;
+          const d = 1;
+          const e = 1;
+          const ops = [a, b, c, d, e].sort(() => Math.random() - 0.5);
+          const target = a + b + c + d + e;
+          return { ops, target };
+        }
+      },
+      {
+        name: 'big_numbers_challenge',
+        generate: () => {
+          const ops = Array.from({length: 5}, () => Math.floor(Math.random() * 6) + 8);
+          const sum = ops.reduce((a, b) => a + b, 0);
+          const target = Math.max(10, Math.min(13, sum - Math.floor(Math.random() * 8)));
+          return { ops, target };
+        }
+      }
+    ];
 
     function generateUniquePuzzle() {
       let attempts = 0;
@@ -1089,25 +1079,7 @@
         attempts++;
       }
       
-      return generateFallbackPuzzle();
-    }
-
-    function generateFallbackPuzzle() {
-      if (Math.random() < 0.3) {
-        const ops = Array.from({length: 5}, () => Math.floor(Math.random() * 6) + 8);
-        const sum = ops.reduce((a, b) => a + b, 0);
-        const target = Math.max(10, Math.min(13, sum - Math.floor(Math.random() * 8)));
-        return { ops, target };
-      } else {
-        const ops = Array.from({length: 5}, () => Math.floor(Math.random() * 7) + 1);
-        const sum = ops.reduce((a, b) => a + b, 0);
-        const target = Math.max(3, Math.min(13, sum - Math.floor(Math.random() * 4)));
-        if (ops.every(x => x === 1)) {
-          ops[0] = 2;
-          target = Math.max(3, Math.min(13, ops.reduce((a, b) => a + b, 0) - Math.floor(Math.random() * 2)));
-        }
-        return { ops, target };
-      }
+      return { ops: [5,4,3,2,1], target: 10 }; // fallback
     }
 
     function loadNewGame() {
@@ -1136,6 +1108,7 @@
       };
     }
 
+    // ===== Start! 按鈕定位 =====
     function positionStartButton() {
       const handArea = document.querySelector('.hand-area');
       const overlayContent = document.querySelector('.start-overlay-content');
@@ -1159,6 +1132,7 @@
       }
     });
 
+    // ===== 開始遊戲 =====
     function startGame() {
       speakText("Ready? Go!");
       const overlay = document.getElementById('startOverlay');
@@ -1174,6 +1148,7 @@
       startTimer();
     }
 
+    // ===== Modal 控制 =====
     function openInstructions() {
       document.getElementById('instructionsModal').style.display = 'block';
     }
@@ -1187,6 +1162,7 @@
       if (event.target === modal) closeInstructions();
     };
 
+    // ===== 啟動遊戲 =====
     document.addEventListener('DOMContentLoaded', () => {
       currentTarget = null;
       originalHand = [];
@@ -1198,6 +1174,7 @@
       timer = null;
       currentGameSnapshot = null;
       volumeEnabled = true;
+      audioContext = null;
       
       document.getElementById('score').textContent = '0';
       document.getElementById('timeLeft').textContent = '60';
@@ -1213,94 +1190,6 @@
       overlay.classList.add('active');
       positionStartButton();
     });
-
-    // 解法模式定義（補回）
-    const SOLUTION_PATTERNS = [
-      {
-        name: 'all_add_small',
-        generate: () => {
-          const a = Math.floor(Math.random() * 4) + 2;
-          const b = Math.floor(Math.random() * 3) + 1;
-          const c = Math.floor(Math.random() * 3) + 1;
-          const d = 1;
-          const e = 1;
-          const ops = [a, b, c, d, e].sort(() => Math.random() - 0.5);
-          const target = a + b + c + d + e;
-          return { ops, target };
-        }
-      },
-      {
-        name: 'multiply_mixed',
-        generate: () => {
-          const a = Math.floor(Math.random() * 7) + 1;
-          const b = Math.floor(Math.random() * 7) + 1;
-          const c = Math.floor(Math.random() * 7) + 1;
-          const d = 1;
-          const e = 1;
-          const product = a * b;
-          const target = product + c - d - e;
-          if (target < 3 || target > 13) throw new Error('Invalid target');
-          const ops = [a, b, c, d, e].sort(() => Math.random() - 0.5);
-          return { ops, target };
-        }
-      },
-      {
-        name: 'divide_exact',
-        generate: () => {
-          const divisor = Math.floor(Math.random() * 7) + 1;
-          const quotient = Math.floor(Math.random() * 7) + 1;
-          const dividend = divisor * quotient;
-          if (dividend > 13) throw new Error('Invalid dividend');
-          const c = Math.floor(Math.random() * 7) + 1;
-          const d = 1;
-          const e = 1;
-          const target = quotient + c - d - e;
-          if (target < 3 || target > 13) throw new Error('Invalid target');
-          const ops = [dividend, divisor, c, d, e].sort(() => Math.random() - 0.5);
-          return { ops, target };
-        }
-      },
-      {
-        name: 'big_numbers_challenge',
-        generate: () => {
-          const ops = Array.from({length: 5}, () => Math.floor(Math.random() * 6) + 8);
-          const sum = ops.reduce((a, b) => a + b, 0);
-          const target = Math.max(10, Math.min(13, sum - Math.floor(Math.random() * 8)));
-          return { ops, target };
-        }
-      },
-      {
-        name: 'mixed_big_small',
-        generate: () => {
-          const big1 = Math.floor(Math.random() * 6) + 8;
-          const big2 = Math.floor(Math.random() * 6) + 8;
-          const small1 = Math.floor(Math.random() * 7) + 1;
-          const small2 = Math.floor(Math.random() * 7) + 1;
-          const small3 = 1;
-          const target = (big1 - small1) + (big2 - small2) - small3;
-          if (target < 3 || target > 13) throw new Error('Invalid target');
-          const ops = [big1, big2, small1, small2, small3].sort(() => Math.random() - 0.5);
-          return { ops, target };
-        }
-      },
-      {
-        name: 'multiply_divide_big',
-        generate: () => {
-          const factor1 = Math.floor(Math.random() * 7) + 1;
-          const factor2 = Math.floor(Math.random() * 7) + 1;
-          const product = factor1 * factor2;
-          const divisor = Math.floor(Math.random() * 7) + 1;
-          const dividend = product * divisor;
-          if (dividend > 13) throw new Error('Invalid puzzle');
-          const small1 = Math.floor(Math.random() * 7) + 1;
-          const small2 = 1;
-          const target = product + small1 + small2;
-          if (target < 3 || target > 13) throw new Error('Invalid target');
-          const ops = [dividend, divisor, factor1, small1, small2].sort(() => Math.random() - 0.5);
-          return { ops, target };
-        }
-      }
-    ];
   </script>
 </body>
 </html>
